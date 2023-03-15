@@ -1,14 +1,17 @@
 import Search from "./Search"
 import Users from "./Users"
 import Loading from "./Loading"
+import { useContext } from "react"
+import GitHubContext from "../context/Github/githubContext"
 
-function Home({users,loading,clearUsers,searchUsers, alert, showAlert}){
+function Home(){
+    const githubContext=useContext(GitHubContext)
     return(
+        
         <>
-        <Search clearUsers={clearUsers} searchUsers={searchUsers} alert={alert} showAlert={showAlert}/>
-        {/* {loading && <Loading />} */}
-        {loading? <Loading/>:""}
-        <Users users={users}/>
+        <Search/>
+        {githubContext.loading? <Loading/>:""}
+        <Users/>
         </>
     )
 

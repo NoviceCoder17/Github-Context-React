@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
-function Contact(){
+import axios from "axios";
+ function Contact(){
     const [formData, setFormdata]=useState({
         fname:"",
         lname:"",
@@ -19,9 +20,21 @@ function Contact(){
         [e.target.name]:e.target.value})
     }
 
-    function onSubmitHandler(e){
-        console.log(e.formData)
-        e.preventDefault()
+    // function onSubmitHandler(e){
+    //     console.log(e.formData)
+    //     e.preventDefault()
+    // }
+
+    async function onSubmitHandler(e){
+        try{
+            e.preventDefault()
+            const res= await axios.post("/contact", formData)
+            console.log(res)
+            alert("success")
+        }
+        catch(error){
+            alert(error)
+        }
     }
     return(
        
